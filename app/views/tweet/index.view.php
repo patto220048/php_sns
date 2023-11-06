@@ -19,12 +19,21 @@
                             <?= $tweet['message'] ?>
                         </div>
                         <div class="tweet-nav mb-3">
-                            <?php include(VIEW_DIR . 'components/like_form.php'); ?>
+                            <form action="like.php" method="post">
+                                <?php if (in_array($tweet['id'], $user_likes)) : ?>
+                                    <button class="btn btn-sm"><img src="../images/svg/heart_active.svg"></button>
+                                    <span class="like-count"><?= @$like_counts[$tweet['id']] ?></span>
+                                <?php else : ?>
+                                    <button class="btn btn-sm"><img src="../images/svg/heart.svg"></button>
+                                    <span class="like-count"><?= @$like_counts[$tweet['id']] ?></span>
+                                <?php endif ?>
+                                <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                <input type="hidden" name="tweet_id" value="<?= $tweet['id'] ?>">
+                            </form>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
+        <?php endforeach ?>
         </div>
-    <?php endforeach ?>
-</div>
