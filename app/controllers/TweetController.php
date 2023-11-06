@@ -38,6 +38,7 @@ class TweetController extends Controller
             $tweet->save($post);
         }
         Route::redirect('./');
+        // echo json_encode( $post );
     }
 
     public function like()
